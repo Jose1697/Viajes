@@ -1,0 +1,8 @@
+asgiref==3.2.10
+cymysql==0.9.14
+Django==3.1
+django-cymysql==3.0.0
+djangorestframework==3.11.0
+mysqlclient==2.0.1
+pytz==2020.1
+sqlparse==0.3.1
