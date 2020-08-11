@@ -1,7 +1,17 @@
 from django.shortcuts import render
 from rest_framework import generics
-from viajes.models import Cliente, Destino, Reserva, Viaje
-from viajes.serializers import ClienteSerializer, DestinoSerializer, ReservaSerializer, ViajeSerializer
+from viajes.models import Cliente, Destino, Reserva, Viaje, AuthUser
+from viajes.serializers import  DestinoSerializer, ReservaSerializer, ViajeSerializer, ClienteSerializer, AuthUserSerializer
+
+class AuthUserList(generics.ListCreateAPIView):
+        queryset = AuthUser.objects.all()
+        serializer_class = AuthUserSerializer
+
+
+class AuthUserDetail(generics.RetrieveUpdateDestroyAPIView):
+        queryset = AuthUser.objects.all()
+        serializer_class = AuthUserSerializer
+
 
 class ClienteList(generics.ListCreateAPIView):
         queryset = Cliente.objects.all()

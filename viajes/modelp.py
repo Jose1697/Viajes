@@ -10,7 +10,10 @@ from django.db import models
 
 class Cliente(models.Model):
     idcliente = models.AutoField(db_column='idCliente', primary_key=True)  # Field name made lowercase.
-    usuario = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='usuario')
+    nombres = models.CharField(max_length=30)
+    apellidos = models.CharField(max_length=30)
+    contra = models.CharField(max_length=20)
+    auth_user = models.ForeignKey('AuthUser', models.DO_NOTHING)
 
     class Meta:
         managed = False
@@ -48,8 +51,6 @@ class Viaje(models.Model):
     class Meta:
         managed = False
         db_table = 'Viaje'
-
-
 
 
 class AuthGroup(models.Model):

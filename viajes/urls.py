@@ -7,6 +7,12 @@ urlpatterns = [
     url(r'^cliente$', views.ClienteList.as_view()),
     url(r'cliente/(?P<pk>[0-9]+)$', views.ClienteDetail.as_view()),
 
+    url(r'^usuario$', views.AuthUserList.as_view()),
+    url(r'usuario/(?P<pk>[0-9]+)$', views.AuthUserDetail.as_view()),
+
+    url(r'^cliente$', views.ClienteList.as_view()),
+    url(r'cliente/(?P<pk>[0-9]+)$', views.ClienteDetail.as_view()),
+
     url(r'^destino$', views.DestinoList.as_view()),
     url(r'destino/(?P<pk>[0-9]+)$', views.DestinoDetail.as_view()),
 
