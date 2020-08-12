@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
-            email=validated_data['email']
+            #email=validated_data['email']
         )
         user.set_password(validated_data['password'])
         user.save()
@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # Tuple of serialized model fields (see link [2])
-        fields = ( "id", "username", "password", "first_name", "last_name","email")
+        fields = ( "id", "username", "password", "first_name", "last_name")
 
 
 
