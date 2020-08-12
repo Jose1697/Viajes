@@ -1,24 +1,35 @@
+from rest_framework.generics import CreateAPIView
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, permissions
 from viajes.models import Cliente, Destino, Reserva, Viaje, AuthUser
-from viajes.serializers import  DestinoSerializer, ReservaSerializer, ViajeSerializer, ClienteSerializer, AuthUserSerializer
+from django.contrib.auth.models import User
+from viajes.serializers import  DestinoSerializer, ReservaSerializer, ViajeSerializer, ClienteSerializer,UserSerializer
 
-class AuthUserList(generics.ListCreateAPIView):
-        queryset = AuthUser.objects.all()
-        serializer_class = AuthUserSerializer
+class CreateUserView(CreateAPIView):
+    model = User()
+    permission_classes = [
+        permissions.AllowAny # Or anon users can't register
+    ]
+    serializer_class = UserSerializer
 
 
-class AuthUserDetail(generics.RetrieveUpdateDestroyAPIView):
-        queryset = AuthUser.objects.all()
-        serializer_class = AuthUserSerializer
+class UserList(generics.ListCreateAPIView):
+        queryset = User.objects.all()
+        permission_classes = [
+                permissions.AllowAny # Or anon users can't register
+        ]
+        serializer_class = UserSerializer
 
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+        queryset = User.objects.all()
+        serializer_class = UserSerializer
 
 class ClienteList(generics.ListCreateAPIView):
         queryset = Cliente.objects.all()
         serializer_class = ClienteSerializer
 
 class ClienteDetail(generics.RetrieveUpdateDestroyAPIView):
-        queryset = Cliente.objects.all()    
+        queryset = Cliente.objects.all()
         serializer_class = ClienteSerializer
 
 class DestinoList(generics.ListCreateAPIView):
