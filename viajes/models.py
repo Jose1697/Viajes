@@ -29,6 +29,19 @@ class Destino(models.Model):
         db_table = 'Destino'
 
 
+class Lugar(models.Model):
+    idlugar = models.AutoField(db_column='idLugar', primary_key=True)  # Field name made lowercase.
+    iddestino = models.ForeignKey(Destino, models.DO_NOTHING, db_column='idDestino')  # Field name made lowercase.
+    nombre = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=1200)
+    imagen = models.CharField(max_length=300)
+
+    class Meta:
+        managed = False
+        db_table = 'Lugar'
+        unique_together = (('idlugar', 'iddestino'),)
+
+
 class Reserva(models.Model):
     idcliente = models.OneToOneField(Cliente, models.DO_NOTHING, db_column='idCliente', primary_key=True)  # Field name made lowercase.
     idviaje = models.ForeignKey('Viaje', models.DO_NOTHING, db_column='idViaje')  # Field name made lowercase.
@@ -42,14 +55,13 @@ class Reserva(models.Model):
 class Viaje(models.Model):
     idviaje = models.AutoField(db_column='idViaje', primary_key=True)  # Field name made lowercase.
     iddestino = models.ForeignKey(Destino, models.DO_NOTHING, db_column='idDestino', blank=True, null=True)  # Field name made lowercase.
-    fecha = models.DateField()
+    hora = models.TimeField(blank=True, null=True)
+    fecha = models.DateField(blank=True, null=True)
     capacidad = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'Viaje'
-
-
 
 
 class AuthGroup(models.Model):
@@ -116,6 +128,16 @@ class AuthUserUserPermissions(models.Model):
         managed = False
         db_table = 'auth_user_user_permissions'
         unique_together = (('user', 'permission'),)
+
+
+class AuthtokenToken(models.Model):
+    key = models.CharField(primary_key=True, max_length=40)
+    created = models.DateTimeField()
+    user = models.OneToOneField(AuthUser, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'authtoken_token'
 
 
 class DjangoAdminLog(models.Model):

@@ -1,9 +1,12 @@
 from rest_framework.generics import CreateAPIView
 from django.shortcuts import render
 from rest_framework import generics, permissions
-from viajes.models import Cliente, Destino, Reserva, Viaje, AuthUser
+from viajes.models import Cliente, Destino, Reserva, Viaje, AuthUser, Lugar
 from django.contrib.auth.models import User
-from viajes.serializers import  DestinoSerializer, ReservaSerializer, ViajeSerializer, ClienteSerializer,UserSerializer
+from viajes.serializers import  DestinoSerializer, ReservaSerializer, ViajeSerializer, ClienteSerializer,UserSerializer, LugarSerializer
+
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 class CreateUserView(CreateAPIView):
     model = User()
@@ -11,6 +14,8 @@ class CreateUserView(CreateAPIView):
         permissions.AllowAny # Or anon users can't register
     ]
     serializer_class = UserSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
 
 class UserList(generics.ListCreateAPIView):
@@ -19,6 +24,8 @@ class UserList(generics.ListCreateAPIView):
                 permissions.AllowAny # Or anon users can't register
         ]
         serializer_class = UserSerializer
+        # authentication_classes = (TokenAuthentication,)
+        # permission_classes = (IsAuthenticated,)
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
         queryset = User.objects.all()
@@ -55,5 +62,17 @@ class ViajeList(generics.ListCreateAPIView):
 class ViajeDetail(generics.RetrieveUpdateDestroyAPIView):
         queryset = Viaje.objects.all()
         serializer_class = ViajeSerializer
+
+class LugarList(generics.ListCreateAPIView):
+        queryset = Lugar.objects.all()
+        serializer_class = LugarSerializer
+
+class LugarDetail(generics.RetrieveUpdateDestroyAPIView):
+        queryset = Lugar.objects.all()
+        serializer_class = LugarSerializer
+
+
+
+
 
 
