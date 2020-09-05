@@ -20,7 +20,7 @@ class Cliente(models.Model):
 class Destino(models.Model):
     iddestino = models.AutoField(db_column='idDestino', primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(max_length=50)
-    descripcion = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=1200, blank=True, null=True)
     imagen = models.CharField(max_length=300)
     precio = models.FloatField()
 
