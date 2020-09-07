@@ -78,16 +78,16 @@ WSGI_APPLICATION = 'admin.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bkp4gsn3cosotglxydiw',
-        'USER':'u6txa4uawgsuhavm',
-        'PASSWORD':'Vd1Y2DJb7Qv1NgyJDArp',
-        'HOST':'bkp4gsn3cosotglxydiw-mysql.services.clever-cloud.com',
-        'PORT':3306,
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'bkp4gsn3cosotglxydiw',
+#         'USER':'u6txa4uawgsuhavm',
+#         'PASSWORD':'Vd1Y2DJb7Qv1NgyJDArp',
+#         'HOST':'bkp4gsn3cosotglxydiw-mysql.services.clever-cloud.com',
+#         'PORT':3306,
+#     }
+# }
 
 import dj_database_url
 from decouple import config
