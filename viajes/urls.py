@@ -15,6 +15,9 @@ urlpatterns = [
     url(r'^users$', views.UserList.as_view()),
     url(r'users/(?P<pk>[0-9]+)$', views.UserDetail.as_view()),
 
+    url(r'^adminauth$', views.AdminList.as_view()),
+    url(r'adminauth/(?P<pk>[0-9]+)$', views.AdminDetail.as_view()),
+
     url(r'^auth/', ObtainAuthToken.as_view()),
 
     url(r'^destino$', views.DestinoList.as_view()),

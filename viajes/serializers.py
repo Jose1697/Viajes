@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from viajes.models import Cliente, Reserva, Viaje, Destino, Lugar
+from viajes.models import Cliente, Reserva, Viaje, Destino, Lugar, AuthtokenToken
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -53,6 +53,10 @@ class LugarSerializer(serializers.ModelSerializer):
         model = Lugar
         fields = ('idlugar','iddestino','nombre','descripcion','imagen')
 
+class AdminSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AuthtokenToken
+        fields = ('key','created','user')
 
 
 

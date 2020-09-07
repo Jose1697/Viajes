@@ -1,9 +1,9 @@
 from rest_framework.generics import CreateAPIView
 from django.shortcuts import render
 from rest_framework import generics, permissions
-from viajes.models import Cliente, Destino, Reserva, Viaje, AuthUser, Lugar
+from viajes.models import Cliente, Destino, Reserva, Viaje, AuthUser, Lugar, AuthtokenToken
 from django.contrib.auth.models import User
-from viajes.serializers import  DestinoSerializer, ReservaSerializer, ViajeSerializer, ClienteSerializer,UserSerializer, LugarSerializer
+from viajes.serializers import  DestinoSerializer, ReservaSerializer, ViajeSerializer, ClienteSerializer,UserSerializer, LugarSerializer, AdminSerializer
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -70,6 +70,14 @@ class LugarList(generics.ListCreateAPIView):
 class LugarDetail(generics.RetrieveUpdateDestroyAPIView):
         queryset = Lugar.objects.all()
         serializer_class = LugarSerializer
+
+class AdminList(generics.ListCreateAPIView):
+        queryset = AuthtokenToken.objects.all()
+        serializer_class = AdminSerializer
+
+class AdminDetail(generics.RetrieveUpdateDestroyAPIView):
+        queryset = AuthtokenToken.objects.all()
+        serializer_class = AdminSerializer
 
 
 
