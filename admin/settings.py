@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '4=6tzc!*d6!%tdd%suyfi=ul#g+d)#@x1ivy-ae*oq_*y&h)fb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','ae2703ba6fc0.ngrok.io']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'admin.urls'
@@ -86,6 +87,14 @@ DATABASES = {
         'HOST':'bkp4gsn3cosotglxydiw-mysql.services.clever-cloud.com',
         'PORT':3306,
     }
+}
+
+import dj_database_url
+from decouple import config
+DATABASES = {
+   'default':dj_database_url.config(
+       default=config('DATABASE_URL')
+   )
 }
 
 
@@ -137,4 +146,9 @@ CORS_ORIGIN_WHITELIST = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'static'),
+)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
