@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # Tuple of serialized model fields (see link [2])
-        fields = ( "id", "username", "password", "first_name", "last_name")
+        fields = ( "id", "username", "password", "first_name", "last_name", "is_staff")
 
 
 
@@ -30,7 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
-        fields = ('idcliente','usuario')
+        fields = ('idcliente','usuario','imagen')
 
 class ReservaSerializer(serializers.ModelSerializer):
     class Meta:
