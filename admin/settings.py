@@ -120,9 +120,12 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser'
+    ),
 }
 
 
@@ -142,7 +145,8 @@ USE_TZ = True
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:4200",
-    "https://sublime-travels.web.app"
+    "https://sublime-travels.web.app",
+    "*"
 ]
 
 # Static files (CSS, JavaScript, Images)
