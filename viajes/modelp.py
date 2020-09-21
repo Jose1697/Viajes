@@ -11,7 +11,7 @@ from django.db import models
 class Cliente(models.Model):
     idcliente = models.AutoField(db_column='idCliente', primary_key=True)  # Field name made lowercase.
     usuario = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='usuario')
-    imagen = models.CharField(max_length=300)
+    imagen = models.CharField(max_length=1200, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -22,7 +22,7 @@ class Destino(models.Model):
     iddestino = models.AutoField(db_column='idDestino', primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=1200, blank=True, null=True)
-    imagen = models.CharField(max_length=1200)
+    imagen = models.CharField(max_length=300)
     precio = models.FloatField()
 
     class Meta:
@@ -35,7 +35,7 @@ class Lugar(models.Model):
     iddestino = models.ForeignKey(Destino, models.DO_NOTHING, db_column='idDestino')  # Field name made lowercase.
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=1200)
-    imagen = models.CharField(max_length=1200)
+    imagen = models.CharField(max_length=1200, blank=True, null=True)
 
     class Meta:
         managed = False

@@ -35,7 +35,7 @@ class ClienteSerializer(serializers.ModelSerializer):
 class ReservaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reserva
-        fields = ('idcliente','idviaje')
+        fields = ('idcliente','idviaje','cantidad')
 
 
 class DestinoSerializer(serializers.ModelSerializer):
