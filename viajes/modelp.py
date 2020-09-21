@@ -44,14 +44,14 @@ class Lugar(models.Model):
 
 
 class Reserva(models.Model):
-    idcliente = models.OneToOneField(Cliente, models.DO_NOTHING, db_column='idCliente', primary_key=True)  # Field name made lowercase.
-    idviaje = models.ForeignKey('Viaje', models.DO_NOTHING, db_column='idViaje')  # Field name made lowercase.
+    idreserva = models.AutoField(db_column='idReserva', primary_key=True)  # Field name made lowercase.
+    idcliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='idCliente', blank=True, null=True)  # Field name made lowercase.
+    idviaje = models.ForeignKey('Viaje', models.DO_NOTHING, db_column='idViaje', blank=True, null=True)  # Field name made lowercase.
     cantidad = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'Reserva'
-        unique_together = (('idcliente', 'idviaje'),)
 
 
 class Viaje(models.Model):
@@ -110,6 +110,8 @@ class AuthUser(models.Model):
     class Meta:
         managed = False
         db_table = 'auth_user'
+
+   
 
 
 class AuthUserGroups(models.Model):

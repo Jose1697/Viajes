@@ -17,6 +17,9 @@ class Cliente(models.Model):
         managed = False
         db_table = 'Cliente'
 
+    def __str__(self):
+		return self.usuario.username
+
 
 class Destino(models.Model):
     iddestino = models.AutoField(db_column='idDestino', primary_key=True)  # Field name made lowercase.
@@ -28,6 +31,9 @@ class Destino(models.Model):
     class Meta:
         managed = False
         db_table = 'Destino'
+
+    def __str__(self):
+		return self.nombre
 
 
 class Lugar(models.Model):
@@ -41,6 +47,9 @@ class Lugar(models.Model):
         managed = False
         db_table = 'Lugar'
         unique_together = (('idlugar', 'iddestino'),)
+    
+    def __str__(self):
+		return self.nombre
 
 
 class Reserva(models.Model):
@@ -110,6 +119,11 @@ class AuthUser(models.Model):
     class Meta:
         managed = False
         db_table = 'auth_user'
+
+    def __str__(self):
+		return self.username
+
+   
 
 
 class AuthUserGroups(models.Model):
