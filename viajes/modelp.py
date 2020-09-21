@@ -22,7 +22,7 @@ class Destino(models.Model):
     iddestino = models.AutoField(db_column='idDestino', primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=1200, blank=True, null=True)
-    imagen = models.CharField(max_length=300)
+    imagen = models.CharField(max_length=1200, blank=True, null=True)
     precio = models.FloatField()
 
     class Meta:
@@ -46,6 +46,7 @@ class Lugar(models.Model):
 class Reserva(models.Model):
     idcliente = models.OneToOneField(Cliente, models.DO_NOTHING, db_column='idCliente', primary_key=True)  # Field name made lowercase.
     idviaje = models.ForeignKey('Viaje', models.DO_NOTHING, db_column='idViaje')  # Field name made lowercase.
+    cantidad = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
