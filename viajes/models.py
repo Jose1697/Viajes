@@ -18,7 +18,7 @@ class Cliente(models.Model):
         db_table = 'Cliente'
 
     def __str__(self):
-		return self.usuario.username
+        return self.usuario.username
 
 
 class Destino(models.Model):
@@ -33,7 +33,7 @@ class Destino(models.Model):
         db_table = 'Destino'
 
     def __str__(self):
-		return self.nombre
+        return self.nombre
 
 
 class Lugar(models.Model):
@@ -49,7 +49,7 @@ class Lugar(models.Model):
         unique_together = (('idlugar', 'iddestino'),)
     
     def __str__(self):
-		return self.nombre
+        return self.nombre
 
 
 class Reserva(models.Model):
@@ -121,7 +121,7 @@ class AuthUser(models.Model):
         db_table = 'auth_user'
 
     def __str__(self):
-		return self.username
+        return self.username
 
    
 
