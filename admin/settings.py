@@ -144,6 +144,7 @@ USE_TZ = True
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:4200",
+    "http://localhost:3000",
     "https://sublime-travels.web.app",
     "*"
 ]
